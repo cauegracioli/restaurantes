@@ -7,6 +7,7 @@ import { MantineProvider } from "@mantine/core";
 
 import "./globals.css";
 import "@mantine/core/styles.css";
+import Estrutura from "@/components/Estrutura";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +36,7 @@ export default function RootLayout({
           withCssVariables
           defaultColorScheme='auto'
         >
-          {children}
+          <Estrutura>{children}</Estrutura>
         </MantineProvider>
       </body>
     </html>

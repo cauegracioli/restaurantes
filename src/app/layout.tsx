@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
-import { ColorSchemeScript } from "@mantine/core";
-import { theme } from "../../theme";
-import { MantineProvider } from "@mantine/core";
-
 import "./globals.css";
-import "@mantine/core/styles.css";
-import Estrutura from "@/components/Estrutura";
+import { cn } from "@/lib/utils";
+import { Header } from "@/components/ui/header";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,16 +24,17 @@ export default function RootLayout({
           name='viewport'
           content='minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no'
         />
-        <ColorSchemeScript />
       </head>
-      <body>
-        <MantineProvider
-          theme={theme}
-          withCssVariables
-          defaultColorScheme='auto'
-        >
-          <Estrutura>{children}</Estrutura>
-        </MantineProvider>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          inter.variable
+        )}
+      >
+        <ThemeProvider attribute='class' defaultTheme='light'>
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
